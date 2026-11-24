@@ -1,0 +1,51 @@
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyCharm and other IDEs
+.idea/
+.vscode/
+*.iml
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+.nox/
+
+# Static analysis and linting
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
