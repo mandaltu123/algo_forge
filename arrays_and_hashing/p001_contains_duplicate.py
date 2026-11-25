@@ -38,25 +38,54 @@ Constraints:
 1 <= nums.length <= 105
 -109 <= nums[i] <= 109
 """
+from traceback import print_tb
 
 
 class DuplicateDetection:
-    def containsDuplicate(self, nums: list[int]) -> bool:
-        if len(nums) == 0:
-            print("no number present in the list")
-            return False
+    def contains_duplicate_hashing(self, nums: list[int]) -> bool:
+        lookup_set = set()
 
-        lookupSet = set()
         for num in nums:
-            if num in lookupSet:
+            if num in lookup_set:
                 return True
-                break
-            else:
-                lookupSet.add(num)
+
+            lookup_set.add(num)
+
         return False
+
+    def contains_duplicate_brute_force(self, nums: list[int]) -> bool:
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[i] == nums[j]:
+                    return True
+
+        return False
+
+    def contains_using_set_one_line(self, nums: list[int]) -> bool:
+        return len(nums) != len(set(nums))
+
+    def find_duplicates_using_sorting(self, nums: list[int]) -> bool:
+        sorted_nums = sorted(nums)
+        print(f"sorted numbers {sorted_nums}")
+        n = len(sorted_nums)
+
+        for i in range(n):
+            try:
+                if sorted_nums[i] == sorted_nums[i + 1]:
+                    return True
+            except:
+                return False
+        return False
+
 
 
 if __name__ == "__main__":
     detection = DuplicateDetection()
-    numbers = [1, 2, 3, 1]
-    print(detection.containsDuplicate(numbers))
+    numbers = [1, 2, 1, 3, 1]
+    distinct_numbers = [1, 2, 3, 4, 5, 6]
+    print(detection.contains_duplicate_hashing(numbers))
+    print(detection.contains_duplicate_brute_force(distinct_numbers))
+    print(detection.contains_duplicate_brute_force(numbers))
+    print(detection.find_duplicates_using_sorting(numbers))
+    print(detection.find_duplicates_using_sorting(distinct_numbers))
+
