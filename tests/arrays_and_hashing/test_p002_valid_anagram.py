@@ -1,15 +1,24 @@
 import pytest
 
-from arrays_and_hashing.p002_valid_anagrams import ValidAnagram
+from arrays_and_hashing.p002_valid_anagrams import (
+    is_anagram_sorting,
+    is_anagram_dictionary,
+)
+
 
 TEST_CASES = [
-    ([1, 2, 3, 1], True),
-    ([1, 2, 3, 4], False),
-    ([1], False),
-    ([5, 5], True),
-    ([], False),
-    ([-1, -2, -1], True),
-    ([0, 0], True),
-    ([7, 7, 7, 7], True),
-    ([1, 2, 3, 4, 5, 5], True),
+    ("anagram", "nagaram", True),
+    ("rat", "car", False),
+    ("paparoach", "roachpapa", True),
+    ("aabb", "abbb", False),
+    ("", "", True),
 ]
+
+
+@pytest.mark.parametrize("algorithm", [
+    is_anagram_sorting,
+    is_anagram_dictionary,
+])
+@pytest.mark.parametrize("s, t, expected", TEST_CASES)
+def test_valid_anagram(algorithm, s, t, expected):
+    assert algorithm(s, t) == expected

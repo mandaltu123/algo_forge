@@ -1,40 +1,34 @@
-"""
-https://leetcode.com/problems/valid-anagram/description/?utm_source=chatgpt.com
-Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+def prepare_char_count_dict(input_str: str) -> dict[str, int]:
+    lookup_dict = {}
 
-Example 1:
+    for char in input_str:
+        lookup_dict[char] = lookup_dict.get(char, 0) + 1
 
-Input: s = "anagram", t = "nagaram"
-
-Output: true
-
-Example 2:
-
-Input: s = "rat", t = "car"
-
-Output: false
+    return lookup_dict
 
 
+def is_anagram_sorting(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
 
-Constraints:
+    return sorted(s) == sorted(t)
 
-1 <= s.length, t.length <= 5 * 104
-s and t consist of lowercase English letters.
-"""
 
-class ValidAnagram:
-    def is_anagram(self, s: str, t: str) -> bool:
-        """"
-        Sorting	O(n log n)	O(n)	Simplest implementation
-        """
-        if len(s) != len(t):
-            return False
-        return sorted(s) == sorted(t)
+def is_anagram_dictionary(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+
+    return prepare_char_count_dict(s) == prepare_char_count_dict(t)
+
 
 if __name__ == "__main__":
-    detect = ValidAnagram()
+
     s = "paparoach"
     t = "roachpapa"
     f = "papajohns"
-    print(detect.is_anagram(s, t))
-    print(detect.is_anagram(s, f))
+    print(is_anagram_sorting(s, t))
+    print(is_anagram_sorting(s, f))
+    print("calling is_anagram_dictionary")
+
+    print(is_anagram_dictionary(s, t))
+    print(is_anagram_dictionary(s, f))
